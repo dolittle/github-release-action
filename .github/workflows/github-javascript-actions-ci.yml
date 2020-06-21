@@ -21,17 +21,17 @@ jobs:
 
     - name: Increment version
       id: increment-version
-      if: ${{ context.should-publish == 'true' }}
+      if: ${{ steps.context.outputs.should-publish == 'true' }}
       uses: dolittle/increment-version-action@v2
       with:
-        version: ${{ context.current-version }}
-        release-type: ${{ context.release-type }}
+        version: ${{ steps.context.outputs.current-version }}
+        release-type: ${{ steps.context.outputs.release-type }}
 
     - name: Create GitHub Release
-      if: ${{ context.should-publish == 'true' }}
+      if: ${{ steps.context.outputs.should-publish == 'true' }}
       uses: ./
       with:
-        cascading-release: ${{ context.cascading-release }}
+        cascading-release: ${{ steps.context.outputs.cascading-release }}
         version: ${{ increment-version.next-version }}
 
   release:

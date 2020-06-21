@@ -32,7 +32,7 @@ jobs:
       uses: ./
       with:
         cascading-release: ${{ steps.context.outputs.cascading-release }}
-        version: ${{ increment-version.next-version }}
+        version: ${{ steps.increment-version.outputs.next-version }}
 
   release:
     name: Release JavaScript GitHub Action

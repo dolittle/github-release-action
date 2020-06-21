@@ -1,6 +1,11 @@
 name: Github JavaScript Actions CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+    - '**'
+  pull_request:
+    types: [closed]
 
 jobs:
   build:

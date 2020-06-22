@@ -13,7 +13,7 @@ inputs:
     required: true
   body:
     description: Release summary
-    required: true
+    required: false
     default: ''
   
 runs:

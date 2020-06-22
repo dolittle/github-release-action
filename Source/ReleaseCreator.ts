@@ -25,7 +25,7 @@ export class ReleaseCreator implements ICreateRelease {
         this._logger.info(`Creating release for version '${version}'`);
         if (!semver.valid(version)) throw new Error(`${version} is not a valid SemVer`);
         version = version.toLowerCase().startsWith('v') ? version : 'v' + version;
-        const isPrerelease = semver.parse(version)!.prerelease !== null;
+        const isPrerelease = semver.parse(version)!.prerelease?.length > 0;
         const title = `${cascadingRelease ? 'Cascading ' : ''}${isPrerelease ? 'Prerelease' : 'Release'} ${version}`;
         return {version, isPrerelease, title, body};
     }

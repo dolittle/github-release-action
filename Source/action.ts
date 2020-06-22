@@ -14,9 +14,9 @@ run();
 export async function run() {
     try {
         const token = getInput('token', { required: true });
-        const cascadingRelease = getInputAsBoolean('cascading-release', true);
-        const body = getInput('body', {required: true});
         const version = getInput('version', {required: true})!;
+        const cascadingRelease = getInputAsBoolean('cascading-release', true);
+        const body = getInput('body');
         const releaseCreator = new ReleaseCreator(logger);
         const {owner, repo} = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);

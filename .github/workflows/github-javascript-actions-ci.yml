@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build and Test 
+    name: Continuous Integration
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +36,5 @@ jobs:
       if: ${{ steps.context.outputs.should-publish == 'true' }}
       uses: ./
       with:
-        token: ${{ secrets.BUILD_PAT }}
         cascading-release: ${{ steps.context.outputs.cascading-release }}
         version: ${{ steps.increment-version.outputs.next-version }}

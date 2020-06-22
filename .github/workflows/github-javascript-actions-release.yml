@@ -5,8 +5,8 @@ on:
     types: [published]
 
 jobs:
-  build:
-    name: Build and Test 
+  release:
+    name: Create and modify tags for GitHub Action
     runs-on: ubuntu-latest
 
     steps:

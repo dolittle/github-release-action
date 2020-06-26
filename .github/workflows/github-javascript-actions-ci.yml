@@ -1,4 +1,7 @@
-name: Github JavaScript Actions CI
+name: Github JavaScript Actions CI/CD
+
+env:
+  PRERELEASE_BRANCHES: 'experimental,alpha,beta,rc' # Comma separated list of prerelease branch names. 'alpha,rc,...'
 
 on:
   push:
@@ -20,21 +23,24 @@ jobs:
         node-version: 12.x
     - run: yarn
     - run: yarn release
+
     - name: Establish context
       id: context
-      uses: dolittle/establish-context-action@v2
+      uses: dolittle/establish-context-action@v2 # Replace with ./ if used withing dolittle/establish-context-action
+      with:
+        prerelease-branches: ${{ env.PRERELEASE_BRANCHES }}
 
     - name: Increment version
       id: increment-version
       if: ${{ steps.context.outputs.should-publish == 'true' }}
-      uses: dolittle/increment-version-action@v2
+      uses: dolittle/increment-version-action@v2 # Replace with ./ if used withing dolittle/increment-version-action
       with:
         version: ${{ steps.context.outputs.current-version }}
         release-type: ${{ steps.context.outputs.release-type }}
 
     - name: Create GitHub Release
       if: ${{ steps.context.outputs.should-publish == 'true' }}
-      uses: ./
+      uses: ./ # Replace with ./ if used withing dolittle/github-release-action
       with:
         token: ${{  secrets.BUILD_PAT  }}
         cascading-release: ${{ steps.context.outputs.cascading-release }}

@@ -18,12 +18,16 @@ export class VersionReleaser implements IReleaseVersion {
 
     async release(release: Release) {
         this._logger.debug(`Creating release with version '${release.version}' and title '${release.title}' on repository 'github.com/${this._owner}/${this._repo}'`);
+
+        // GitHub Create Release documentation: https://developer.github.com/v3/repos/releases/#create-a-release
+        // GitHub Octokit Create Release documentation: https://octokit.github.io/rest.js/v16#octokit-routes-repos-create-release
+
         const releaseResponse = await this._github.repos.createRelease({
             owner: this._owner,
             repo: this._repo,
             tag_name: release.version,
             name: release.title,
-            body: release.body === '' ? undefined : release.body,
+            body: release.body || '',
             prerelease: release.isPrerelease,
             target_commitish: this._sha
 

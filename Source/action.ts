@@ -20,15 +20,18 @@ export async function run() {
         const releaseCreator = new ReleaseCreator(logger);
         const {owner, repo} = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);
+        const release = releaseCreator.create(version, cascadingRelease, body);
 
-        await versionReleaser.release(releaseCreator.create(version, cascadingRelease, body));
+        logger.info(`Release prepared for ${release.version} - ${release.title}`);
+
+        await versionReleaser.release(release);
     } catch (error) {
         fail(error);
     }
 }
 
-
 function fail(error: Error) {
     logger.error(error.message);
+    logger.error(error);
     setFailed(error.message);
 }

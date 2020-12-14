@@ -21,12 +21,12 @@ export class ReleaseCreator implements ICreateRelease {
      */
     constructor(private _logger: ILogger) {}
 
-    create(version: string, cascadingRelease: boolean, body: string): Release {
+    create(version: string, body: string): Release {
         this._logger.info(`Creating release for version '${version}'`);
         if (!semver.valid(version)) throw new Error(`${version} is not a valid SemVer`);
         version = version.toLowerCase().startsWith('v') ? version : 'v' + version;
         const isPrerelease = semver.parse(version)!.prerelease?.length > 0;
-        const title = `${cascadingRelease ? 'Cascading ' : ''}${isPrerelease ? 'Prerelease' : 'Release'} ${version}`;
+        const title = `${isPrerelease ? 'Prerelease' : 'Release'} ${version}`;
         return {version, isPrerelease, title, body};
     }
 }

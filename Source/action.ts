@@ -15,12 +15,11 @@ export async function run() {
     try {
         const token = getInput('token', { required: true });
         const version = getInput('version', { required: true })!;
-        const cascadingRelease = getInputAsBoolean('cascading-release', true);
         const body = getInput('body');
         const releaseCreator = new ReleaseCreator(logger);
         const { owner, repo } = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);
-        const release = releaseCreator.create(version, cascadingRelease, body);
+        const release = releaseCreator.create(version, body);
 
         logger.info(`Release prepared for ${release.version} - ${release.title}`);
 

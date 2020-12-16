@@ -10,7 +10,6 @@ For more information, reference the GitHub Help Documentation for [Creating a wo
 
 ### Inputs
 - `token`: The token to use for the GitHub API. default: ${{ github.token }}
-- `cascading-release` (required): Whether the release was triggered by a cascading release
 - `version` (required): The version to release
 - `body` (required): The release summary. default: ''  
 
@@ -35,7 +34,6 @@ jobs:
       - name: Release
         uses: dolittle/github-release-action@v1
         with:
-          cascading-release: false
           version: 2.0.0
         
 ```

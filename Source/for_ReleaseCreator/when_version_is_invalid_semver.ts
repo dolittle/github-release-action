@@ -9,7 +9,7 @@ describe('when version is invalid semver', () => {
     const release_creator = new a_release_creator().release_creator;
     let exception: Error;
     try {
-        release_creator.create('2-0-0', false, '');
+        release_creator.create('2-0-0', '');
     } catch (error) {
         exception = error;
     }

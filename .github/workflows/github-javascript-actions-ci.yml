@@ -43,5 +43,4 @@ jobs:
       uses: ./ # Replace with ./ if used withing dolittle/github-release-action
       with:
         token: ${{  secrets.BUILD_PAT  }}
-        cascading-release: ${{ steps.context.outputs.cascading-release }}
         version: ${{ steps.increment-version.outputs.next-version }}

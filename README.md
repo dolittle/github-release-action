@@ -34,7 +34,6 @@ jobs:
       - name: Release
         uses: dolittle/github-release-action@v1
         with:
-          cascading-release: false
           version: 2.0.0
         
 ```

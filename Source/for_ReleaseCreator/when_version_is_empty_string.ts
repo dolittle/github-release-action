@@ -9,7 +9,7 @@ describe('when version is empty string', () => {
     const release_creator = new a_release_creator().release_creator;
     let exception: Error;
     try {
-        release_creator.create('', false, '');
+        release_creator.create('', '');
     } catch (error) {
         exception = error;
     }

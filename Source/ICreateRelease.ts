@@ -17,5 +17,5 @@ export interface ICreateRelease {
      * @param {string} version
      * @returns {Tag[]}
      */
-    create(version: string, cascadingRelease: boolean, body: string): Release
+    create(version: string, body: string): Release
 }

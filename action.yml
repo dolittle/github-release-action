@@ -5,9 +5,6 @@ inputs:
     description: Token to use for Github API
     required: true
     default: ${{ github.token }}
-  cascading-release:
-    description: Whether there's a cascading release
-    required: true
   version:
     description: The version to release
     required: true

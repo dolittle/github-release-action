@@ -9,7 +9,7 @@ describe('when version is undefined', () => {
     const release_creator = new a_release_creator().release_creator;
     let exception: Error;
     try {
-        release_creator.create(undefined as any, false, '');
+        release_creator.create(undefined as any, '');
     } catch (error) {
         exception = error;
     }

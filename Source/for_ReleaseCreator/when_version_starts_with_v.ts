@@ -8,7 +8,7 @@ import { expect } from 'chai';
 describe('when version starts with v', () => {
     const tags_creator = new a_release_creator().release_creator;
     const version = 'v1.0.0';
-    const result = tags_creator.create(version, false, '');
+    const result = tags_creator.create(version, '');
 
     it('should return a result', () => expect(result).to.not.be.undefined);
     it('should return a version', () => expect(result.version).to.not.be.undefined);

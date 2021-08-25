@@ -25,7 +25,7 @@ export class VersionReleaser implements IReleaseVersion {
         const releaseResponse = await this._github.repos.createRelease({
             owner: this._owner,
             repo: this._repo,
-            tag_name: release.version,
+            tag_name: `${release.microservice !== undefined ? `${release.microservice}-` : ''}${release.version}`,
             name: release.title,
             body: release.body || '',
             prerelease: release.isPrerelease,

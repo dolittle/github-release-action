@@ -19,14 +19,21 @@ export class ReleaseCreator implements ICreateRelease {
      * Instantiates an instance of {TagsCreator}.
      * @param {ILogger} _logger
      */
-    constructor(private _logger: ILogger) {}
+    constructor(private _logger: ILogger) { }
 
-    create(version: string, body: string): Release {
+    create(version: string, body: string, microservice: string = ''): Release {
         this._logger.info(`Creating release for version '${version}'`);
         if (!semver.valid(version)) throw new Error(`${version} is not a valid SemVer`);
         version = version.toLowerCase().startsWith('v') ? version : 'v' + version;
         const isPrerelease = semver.parse(version)!.prerelease?.length > 0;
-        const title = `${isPrerelease ? 'Prerelease' : 'Release'} ${version}`;
-        return {version, isPrerelease, title, body};
+        const isForMicroservice = microservice !== '';
+        const title = `${isPrerelease ? 'Prerelease' : 'Release'} ${isForMicroservice ? `${microservice} ` : ''}${version}`;
+        return {
+            version,
+            isPrerelease,
+            title,
+            body,
+            microservice: isForMicroservice ? microservice : undefined
+        };
     }
 }

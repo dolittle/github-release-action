@@ -17,5 +17,5 @@ export interface ICreateRelease {
      * @param {string} version
      * @returns {Tag[]}
      */
-    create(version: string, body: string): Release
+    create(version: string, body: string, microservice?: string): Release
 }

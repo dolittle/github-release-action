@@ -16,6 +16,7 @@ export async function run() {
         const token = getInput('token', { required: true });
         const version = getInput('version', { required: true })!;
         const body = getInput('body');
+        const microservice = getInput('microservice');
         const releaseCreator = new ReleaseCreator(logger);
         const { owner, repo } = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);

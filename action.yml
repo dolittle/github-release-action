@@ -1,5 +1,5 @@
-name: 'Github Release'
-description: 'Triggers a GitHub release of a version'
+name: "Github Release"
+description: "Triggers a GitHub release of a version"
 inputs:
   token:
     description: Token to use for Github API
@@ -11,8 +11,12 @@ inputs:
   body:
     description: Release summary
     required: false
-    default: ''
-  
+    default: ""
+  microservice:
+    description: The name of the Microservice that should be released. The name should not contain spaces
+    required: false
+    default: ""
+
 runs:
-  using: 'node12'
-  main: 'release/index.js'
+  using: "node12"
+  main: "release/index.js"

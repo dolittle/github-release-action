@@ -5,5 +5,6 @@ export type Release = {
     version: string,
     title: string,
     body: string,
-    isPrerelease: boolean
+    isPrerelease: boolean,
+    microservice?: string
 };

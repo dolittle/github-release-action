@@ -20,7 +20,7 @@ export async function run() {
         const releaseCreator = new ReleaseCreator(logger);
         const { owner, repo } = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);
-        const release = releaseCreator.create(version, body);
+        const release = releaseCreator.create(version, body, microservice);
 
         logger.info(`Release prepared for ${release.version} - ${release.title}`);
 

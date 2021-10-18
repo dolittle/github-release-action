@@ -1,3 +1,13 @@
+# [2.1.1] - 2021-8-27 [PR: #15](https://github.com/dolittle/github-release-action/pull/15)
+## Summary
+
+Fixes a bug where the 'microservice' input was ignored
+
+### Fixed
+
+- Send the microservice input argument to the release creator
+
+
 # [2.1.0] - 2021-8-25 [PR: #14](https://github.com/dolittle/github-release-action/pull/14)
 ## Summary
 

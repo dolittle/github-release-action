@@ -5,6 +5,7 @@ import { ILogger } from '@dolittle/github-actions.shared.logging';
 import { IReleaseVersion } from './IReleaseVersion';
 import { Release } from './Release';
 import { GitHub } from '@actions/github/lib/utils';
+import { ReleaseContext } from './ReleaseContext';
 
 export class VersionReleaser implements IReleaseVersion {
 
@@ -16,7 +17,7 @@ export class VersionReleaser implements IReleaseVersion {
         private readonly _logger: ILogger) {
     }
 
-    async release(release: Release) {
+    async release(release: Release): Promise<ReleaseContext> {
         this._logger.debug(`Creating release with version '${release.version}' and title '${release.title}' on repository 'github.com/${this._owner}/${this._repo}'`);
 
         // GitHub Create Release documentation: https://developer.github.com/v3/repos/releases/#create-a-release
@@ -32,7 +33,11 @@ export class VersionReleaser implements IReleaseVersion {
             target_commitish: this._sha
 
         });
+
         this._logger.debug(`Status: ${releaseResponse.status}`);
 
+        return {
+            uploadUrl: releaseResponse.data.upload_url,
+        };
     }
 }

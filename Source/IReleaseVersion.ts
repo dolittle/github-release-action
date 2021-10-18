@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { Release } from './Release';
+import { ReleaseContext } from './ReleaseContext';
 
 /**
  * Defines a system that that can release a version to GitHub.
@@ -15,7 +16,7 @@ export interface IReleaseVersion {
      * Releases a new version.
      *
      * @param {Release} release
-     * @returns {Promise<void>}
+     * @returns {Promise<ReleaseContext>}
      */
-    release(release: Release): Promise<void>
+    release(release: Release): Promise<ReleaseContext>;
 }

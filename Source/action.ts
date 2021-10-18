@@ -1,10 +1,11 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { getInput, setFailed } from '@actions/core';
+import { getInput, setOutput, setFailed } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
 import { Logger } from '@dolittle/github-actions.shared.logging';
 import { getInputAsBoolean } from '@dolittle/github-actions.shared.rudiments';
+import { ReleaseContext } from './ReleaseContext';
 import { ReleaseCreator } from './ReleaseCreator';
 import { VersionReleaser } from './VersionReleaser';
 
@@ -24,10 +25,24 @@ export async function run() {
 
         logger.info(`Release prepared for ${release.version} - ${release.title}`);
 
-        await versionReleaser.release(release);
+        const releaseContext = await versionReleaser.release(release);
+        logger.info(`Created release ${release.version} - ${release.title}`);
+        outputContext(releaseContext);
     } catch (error) {
         fail(error);
     }
+}
+
+function output(
+    uploadUrl: string) {
+    logger.info('Outputting: ');
+    logger.info(`'upload_url': ${uploadUrl}`);
+
+    setOutput('upload_url', uploadUrl);
+}
+function outputContext(context: ReleaseContext) {
+    output(
+        context.uploadUrl);
 }
 
 function fail(error: Error) {

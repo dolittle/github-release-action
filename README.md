@@ -12,6 +12,7 @@ For more information, reference the GitHub Help Documentation for [Creating a wo
 - `token`: The token to use for the GitHub API. default: ${{ github.token }}
 - `version` (required): The version to release
 - `body` (required): The release summary. default: ''  
+- `microservice` (optional): The name of the Microservice that should be released. The name should not contain spaces.
 
 ### Example Workflow
 ```yaml

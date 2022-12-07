@@ -15,7 +15,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
-    - run: yarn
     - name: Release GitHub Action
       uses: technote-space/release-github-actions@v8
       with:

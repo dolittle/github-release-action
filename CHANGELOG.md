@@ -1,3 +1,9 @@
+# [2.2.1] - 2022-12-7 [PR: #18](https://github.com/dolittle/github-release-action/pull/18)
+## Summary
+
+Update the deps and modernise
+
+
 # [2.2.0] - 2021-10-18 [PR: #16](https://github.com/dolittle/github-release-action/pull/16)
 ## Summary
 

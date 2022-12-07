@@ -6,7 +6,7 @@ import semver from 'semver';
 import { ICreateRelease } from './ICreateRelease';
 import { Release } from './Release';
 
-/**
+/**.
  * Represents an implementation of {ICreateRelease}
  *
  * @export
@@ -17,10 +17,13 @@ export class ReleaseCreator implements ICreateRelease {
 
     /**
      * Instantiates an instance of {TagsCreator}.
-     * @param {ILogger} _logger
+     * @param {ILogger} _logger - The logger.
      */
     constructor(private _logger: ILogger) { }
 
+    /**
+     * @inheritdoc
+     */
     create(version: string, body: string, microservice: string = ''): Release {
         this._logger.info(`Creating release for version '${version}'`);
         if (!semver.valid(version)) throw new Error(`${version} is not a valid SemVer`);

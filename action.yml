@@ -21,5 +21,5 @@ outputs:
     description: The URL for uploading assets to the release
 
 runs:
-  using: "node12"
+  using: "node16"
   main: "release/index.js"

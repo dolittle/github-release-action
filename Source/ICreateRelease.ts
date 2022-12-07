@@ -6,12 +6,11 @@ import { Release } from './Release';
 /**
  * Defines a system that can create tag strings.
  *
- * @export
  * @interface ICreateRelease
  */
 export interface ICreateRelease {
 
-    /**
+    /**.
      * Creates tags based off the version
      *
      * @param {string} version

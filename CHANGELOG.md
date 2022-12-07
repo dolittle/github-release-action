@@ -1,3 +1,13 @@
+# [2.2.0] - 2021-10-18 [PR: #16](https://github.com/dolittle/github-release-action/pull/16)
+## Summary
+
+Adds an output called 'upload_url' inspired by https://github.com/actions/create-release to allow us to use https://github.com/actions/upload-release-asset to upload artefacts to the release.
+
+### Added
+
+- An output called 'upload_url' to use to upload assets to the release later in workflows.
+
+
 # [2.1.1] - 2021-8-27 [PR: #15](https://github.com/dolittle/github-release-action/pull/15)
 ## Summary
 

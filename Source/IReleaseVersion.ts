@@ -7,7 +7,6 @@ import { ReleaseContext } from './ReleaseContext';
 /**
  * Defines a system that that can release a version to GitHub.
  *
- * @export
  * @interface IReleaseVersion
  */
 export interface IReleaseVersion {

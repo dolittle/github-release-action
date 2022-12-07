@@ -1,11 +1,12 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Dolittle. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+// Copyright (c) Dolittle. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 import { a_release_creator } from './given/a_release_creator';
 import { expect } from 'chai';
 
-describe('when version starts with v', () => {
+import { describeThis } from '@dolittle/typescript.testing';
+
+describeThis(__filename, () => {
     const tags_creator = new a_release_creator().release_creator;
     const version = 'v1.0.0';
     const result = tags_creator.create(version, '');

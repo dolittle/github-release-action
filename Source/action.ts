@@ -4,7 +4,6 @@
 import { getInput, setOutput, setFailed } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
 import { Logger } from '@dolittle/github-actions.shared.logging';
-import { getInputAsBoolean } from '@dolittle/github-actions.shared.rudiments';
 import { ReleaseContext } from './ReleaseContext';
 import { ReleaseCreator } from './ReleaseCreator';
 import { VersionReleaser } from './VersionReleaser';
@@ -12,6 +11,10 @@ import { VersionReleaser } from './VersionReleaser';
 const logger = new Logger();
 
 run();
+
+/**
+ * Runs the action.
+ */
 export async function run() {
     try {
         const token = getInput('token', { required: true });
@@ -28,7 +31,7 @@ export async function run() {
         const releaseContext = await versionReleaser.release(release);
         logger.info(`Created release ${release.version} - ${release.title}`);
         outputContext(releaseContext);
-    } catch (error) {
+    } catch (error: any) {
         fail(error);
     }
 }

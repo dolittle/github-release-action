@@ -1,9 +1,9 @@
-// Copyright (c) Dolittle. All rights reserved.
+// Copyright (c) woksin-org. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { getInput, setOutput, setFailed } from '@actions/core';
 import { getOctokit, context } from '@actions/github';
-import { Logger } from '@dolittle/github-actions.shared.logging';
+import { Logger } from '@woksin/github-actions.shared.logging';
 import { ReleaseContext } from './ReleaseContext';
 import { ReleaseCreator } from './ReleaseCreator';
 import { VersionReleaser } from './VersionReleaser';
@@ -17,14 +17,14 @@ run();
  */
 export async function run() {
     try {
-        const token = getInput('token', { required: true });
         const version = getInput('version', { required: true })!;
+        const token = getInput('token');
         const body = getInput('body');
-        const microservice = getInput('microservice');
+        const applicationName = getInput('application-name');
         const releaseCreator = new ReleaseCreator(logger);
         const { owner, repo } = context.repo;
         const versionReleaser = new VersionReleaser(owner, repo, context.sha, getOctokit(token), logger);
-        const release = releaseCreator.create(version, body, microservice);
+        const release = releaseCreator.create(version, body, applicationName);
 
         logger.info(`Release prepared for ${release.version} - ${release.title}`);
 

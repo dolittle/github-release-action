@@ -1,7 +1,7 @@
-// Copyright (c) Dolittle. All rights reserved.
+// Copyright (c) woksin-org. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ILogger } from '@dolittle/github-actions.shared.logging';
+import { ILogger } from '@woksin/github-actions.shared.logging';
 import semver from 'semver';
 import { ICreateRelease } from './ICreateRelease';
 import { Release } from './Release';
@@ -24,19 +24,19 @@ export class ReleaseCreator implements ICreateRelease {
     /**
      * @inheritdoc
      */
-    create(version: string, body: string, microservice: string = ''): Release {
+    create(version: string, body: string, applicationName: string = ''): Release {
         this._logger.info(`Creating release for version '${version}'`);
         if (!semver.valid(version)) throw new Error(`${version} is not a valid SemVer`);
         version = version.toLowerCase().startsWith('v') ? version : 'v' + version;
         const isPrerelease = semver.parse(version)!.prerelease?.length > 0;
-        const isForMicroservice = microservice !== '';
-        const title = `${isPrerelease ? 'Prerelease' : 'Release'} ${isForMicroservice ? `${microservice} ` : ''}${version}`;
+        const isForApplication = applicationName !== '';
+        const title = `${isPrerelease ? 'Prerelease' : 'Release'} ${isForApplication ? `${applicationName} ` : ''}${version}`;
         return {
             version,
             isPrerelease,
             title,
             body,
-            microservice: isForMicroservice ? microservice : undefined
+            microservice: isForApplication ? applicationName : undefined
         };
     }
 }

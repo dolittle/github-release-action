@@ -1,10 +1,6 @@
 name: "Github Release"
 description: "Triggers a GitHub release of a version"
 inputs:
-  token:
-    description: Token to use for Github API
-    required: true
-    default: ${{ github.token }}
   version:
     description: The version to release
     required: true
@@ -16,6 +12,10 @@ inputs:
     description: The name of the Microservice that should be released. The name should not contain spaces
     required: false
     default: ""
+  token:
+    description: Token to use for Github API
+    required: false
+    default: ${{ github.token }}
 outputs:
   upload_url:
     description: The URL for uploading assets to the release

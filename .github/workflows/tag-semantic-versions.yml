@@ -1,4 +1,4 @@
-name: Github JavaScript Actions CI/CD
+name: Release GithubAction as semantic tags
 
 on:
   release:
@@ -22,4 +22,3 @@ jobs:
         TEST_TAG_PREFIX: test/
         ORIGINAL_TAG_PREFIX: original/
         CLEAN_TEST_TAG: true
-
